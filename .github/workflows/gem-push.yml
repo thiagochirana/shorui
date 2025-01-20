@@ -30,10 +30,13 @@ jobs:
   #     run: bundle exec rubocop
 
   publish:
-    name: Publish to RubyGems
+    name: Publish and Build
     # needs: test
     runs-on: ubuntu-latest
     # if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
     
     steps:
     - uses: actions/checkout@v4
@@ -45,7 +48,7 @@ jobs:
 
     - name: Clean old .gem file
       run: |
-        rm -f *.gem
+        rm -f shorui-*.gem
 
     - name: Build new .gem file
       run: |
@@ -56,7 +59,7 @@ jobs:
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
         chmod 0600 $HOME/.gem/credentials
-        printf -- "---\n:rubygems_api_key: ${GITHUB_SECRET_RUBYGEMS_AUTH_TOKEN}\n" > $HOME/.gem/credentials
+        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
         gem push *.gem
       env:
         GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
