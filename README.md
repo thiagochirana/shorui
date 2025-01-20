@@ -1,4 +1,4 @@
-# Shorui
+![alt text](docs/ShoruiLogo.png)
 
 [![Gem Version](https://badge.fury.io/rb/shorui.svg)](https://badge.fury.io/rb/shorui)
 
