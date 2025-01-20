@@ -56,6 +56,7 @@ The generated README.md will follow this structure:
 - **Optional Params:** `param1, param2` (if any)
 ```
 
+> You can see a better example [clicking here](https://github.com/thiagochirana/shorui/tree/main/example)
 ## Features
 
 - Automatic route analysis
