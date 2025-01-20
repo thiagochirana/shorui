@@ -1,9 +1,13 @@
-# frozen_string_literal: true
-
 require_relative "shorui/version"
 require_relative "shorui/generator"
+require 'rails'
 
 module Shorui
   class Error < StandardError; end
-  # Your code goes here...
+
+  class Railtie < Rails::Railtie
+    rake_tasks do
+      load File.expand_path('../tasks/shorui.rake', __FILE__)
+    end
+  end
 end
