@@ -18,6 +18,11 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.0'
+    
+    - name: Debug
+      run: |
+        echo "Token está vazio? ${{ secrets.RUBYGEMS_AUTH_TOKEN == '' }}"
+        echo "Arquivo credentials existe? $(test -f $HOME/.gem/credentials && echo 'Sim' || echo 'Não')"
 
     - name: Publish to RubyGems
       env:
